@@ -67,19 +67,19 @@ int isMonotoneDecreasing(int array[], const int SIZE)
 {
 	int res = 0, max = 0;
 
-	for (int i = 0; i < SIZE ; i++)
+	for (int i = 0; i < SIZE - 1; i++)
 	{
-		if (array[i] > array[i + 1])
+		if (array[i] >= array[i + 1])
 		{
 			res++;
-			if (res > max)
-			{
-				max = res;
-				res = 0;
-			}
+		}
+		else if (res > max)
+		{
+			max = res;
+			res = 0;
 		}
 	}
-	
+
 	if (res > max)
 	{
 		max = res;
@@ -108,7 +108,7 @@ int main()
 
 	//статический
 	const int SIZE = 10;
-	int array[SIZE] = { 3, 2, 1, -3, 6, 1, -9, 5, 6, 6 };
+	int array[SIZE] = { 9,8,6,5,4,3,-4,2,1,1 };
 
 
 	try
@@ -123,13 +123,12 @@ int main()
 		std::cout << "Массив идет по возрастанию?" << std::endl;
 		std::cout << isOrderedArray(mas_array, size_array) << std::endl;
 
-		std::cout << "Перестановка соседних элементов массива: " << std::endl;
-		permutationArray(mas_array, size_array);
-		outArray(mas_array, size_array);
-
 		std::cout << "Hаибольшую длинa монотонного убывающего фрагмента последовательности = ";
 		std::cout << isMonotoneDecreasing(mas_array, size_array) << std::endl;
 
+		std::cout << "Перестановка соседних элементов массива: " << std::endl;
+		permutationArray(mas_array, size_array);
+		outArray(mas_array, size_array);
 
 		delete[] mas_array;
 
